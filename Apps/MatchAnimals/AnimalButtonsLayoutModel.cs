@@ -61,14 +61,15 @@ public class AnimalButtonsLayoutModel
 
     private void SetAnimalButtonsText()
     {
-        List<string> emojis = GetAnimalEmojis();
-        Array.ForEach(_buttonModels, model => SetAnimalButtonText(model, emojis));
+        List<string> labels = GetAnimalEmojiLabels();
+        Array.ForEach(_buttonModels, model => SetAnimalButtonText(model, labels));
     }
 
-    private static List<string> GetAnimalEmojis()
+    private static List<string> GetAnimalEmojiLabels()
     {
-        string[] emojis = Emojis.GetAnimalEmojis(ButtonsCount);
-        return [.. emojis.Concat(emojis)];
+        Emoji[] emojis = Emojis.GetAnimalEmojis(ButtonsCount);
+        Emoji[] concatenated = [.. emojis.Concat(emojis)];
+        return concatenated.Select(e => e.Symbol).ToList();
     }
 
     private static void SetAnimalButtonText(AnimalButtonModel model, List<string> emojis)
