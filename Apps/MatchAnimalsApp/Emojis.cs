@@ -63,7 +63,7 @@ public static class Emojis
     public static Emoji[] GetAnimalEmojis(int count)
     {
         // make sure count is not greater than the emojis collection
-        count = count > Animals.Length ? Animals.Length : count;
+        count = count <= 0 || count > Animals.Length ? Animals.Length : count;
 
         List<Emoji> emojis = Animals.ToList();
 

@@ -1,7 +1,7 @@
 ﻿
-using CardPicker;
+using CardPickerApp;
 
-namespace Tests.CardPicker;
+namespace Tests.CardPickerApp;
 
 public class CardPickerTests
 {
@@ -19,7 +19,7 @@ public class CardPickerTests
     public void ShouldReturnCorrectNumberOfCards(int count)
     {
         // Assert + Act
-        Card[] cards = global::CardPicker.CardPicker.GetCards(count);
+        Card[] cards = CardPicker.GetCards(count);
 
         // Arrange
         Assert.Equal(count, cards.Length);
@@ -33,7 +33,7 @@ public class CardPickerTests
         const int count = 100;
 
         // Act
-        Card[] cards = global::CardPicker.CardPicker.GetCards(count);
+        Card[] cards = CardPicker.GetCards(count);
 
         // Assert
         Assert.Equal(expected, cards.Length);
@@ -47,7 +47,7 @@ public class CardPickerTests
         const int count = 0;
 
         // Act
-        Card[] cards = global::CardPicker.CardPicker.GetCards(count);
+        Card[] cards = CardPicker.GetCards(count);
 
         // Assert
         Assert.Equal(expected, cards.Length);
@@ -60,7 +60,7 @@ public class CardPickerTests
         const int count = 5;
 
         // Act
-        Card[] cards = global::CardPicker.CardPicker.GetCards(count);
+        Card[] cards = CardPicker.GetCards(count);
 
         // Assert
         Assert.Distinct(cards);

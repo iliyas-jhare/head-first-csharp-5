@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CardPicker\CardPicker.csproj" />
+    <ProjectReference Include="..\CardPickerApp\CardPickerApp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

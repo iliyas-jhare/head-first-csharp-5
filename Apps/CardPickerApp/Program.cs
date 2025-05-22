@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-using CardPicker;
+using CardPickerApp;
 
 Console.OutputEncoding = Encoding.Unicode;
 
@@ -22,7 +22,7 @@ while (true)
         continue;
     }
 
-    foreach (Card card in CardPicker.CardPicker.GetCards(count))
+    foreach (Card card in CardPicker.GetCards(count))
     {
         Console.WriteLine($"Card: {card}");
     }
@@ -31,3 +31,4 @@ while (true)
 
 Console.WriteLine($"Finished. {DateTime.Now:F}");
 Console.ReadKey();
+

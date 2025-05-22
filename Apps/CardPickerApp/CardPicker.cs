@@ -1,4 +1,4 @@
-﻿namespace CardPicker;
+﻿namespace CardPickerApp;
 
 public class CardPicker
 {
