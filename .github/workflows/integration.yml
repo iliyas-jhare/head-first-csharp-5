@@ -16,7 +16,7 @@ jobs:
         with:
           dotnet-version: 9.0.x
       - name: .NET Workloads
-        run: dotnet workload install maui-windows maui-android maui-maccatalyst
+        run: dotnet workload install maui-windows maui-android
       - name: Restore
         working-directory: Apps
         run: dotnet restore --ignore-failed-sources
@@ -36,7 +36,7 @@ jobs:
         with:
           dotnet-version: 9.0.x
       - name: .NET Workloads
-        run: dotnet workload install maui-windows maui-android maui-maccatalyst
+        run: dotnet workload install maui-windows maui-android
       - name: Restore
         working-directory: Apps
         run: dotnet restore --ignore-failed-sources
