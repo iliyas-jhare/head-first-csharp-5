@@ -16,10 +16,13 @@ jobs:
       with:
         dotnet-version: 9.0.x
     - name: Restore
+      working-directory: Apps
       run: dotnet restore
     - name: Build
+      working-directory: Apps    
       run: dotnet build --no-restore --configuration Debug --framework net9.0
     - name: Test
+      working-directory: Apps    
       run: dotnet test --no-restore --no-build --configuration Debug --framework net9.0 --verbosity normal
 
   release_config:
@@ -31,8 +34,11 @@ jobs:
       with:
         dotnet-version: 9.0.x
     - name: Restore
+      working-directory: Apps
       run: dotnet restore
     - name: Build
+      working-directory: Apps      
       run: dotnet build --no-restore --configuration Release --framework net9.0
     - name: Test
+      working-directory: Apps
       run: dotnet test --no-restore --no-build --configuration Release --framework net9.0 --verbosity normal
