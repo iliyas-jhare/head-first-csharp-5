@@ -7,7 +7,7 @@ on:
     branches: ["main"]
 
 jobs:
-  debug_config:
+  run_tests_debug_config:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,7 +16,7 @@ jobs:
         with:
           dotnet-version: 9.0.x
       - name: .NET Workloads
-        run: dotnet workload install maui-windows maui-android maui-ios maui-maccatalyst
+        run: dotnet workload install maui-windows maui-android
       - name: Restore
         working-directory: Apps
         run: dotnet restore
@@ -27,7 +27,7 @@ jobs:
         working-directory: Apps
         run: dotnet test --no-restore --no-build --configuration Debug --framework net9.0 --verbosity normal
 
-  release_config:
+  run_tests_release_config:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
         with:
           dotnet-version: 9.0.x
       - name: .NET Workloads
-        run: dotnet workload install maui-windows maui-android maui-ios maui-maccatalyst
+        run: dotnet workload install maui-windows maui-android
       - name: Restore
         working-directory: Apps
         run: dotnet restore
