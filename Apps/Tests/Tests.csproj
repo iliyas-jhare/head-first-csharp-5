@@ -16,6 +16,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CardPickerApp\CardPickerApp.csproj" />
+    <ProjectReference Include="..\ControlsExperimentsApp\ControlsExperimentsApp.csproj" />
+    <ProjectReference Include="..\MatchAnimalsApp\MatchAnimalsApp.csproj" />
+    <ProjectReference Include="..\RoughProgramsApp\RoughProgramsApp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
