@@ -6,43 +6,32 @@ on:
   pull_request:
     branches: ["main"]
 
-jobs:
-  run_tests_debug_config:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 9.0.x
-      - name: .NET Workloads
-        run: dotnet workload install maui
-      - name: Restore
-        working-directory: Apps
-        run: dotnet restore
-      - name: Build
-        working-directory: Apps
-        run: dotnet build --no-restore --configuration Debug --framework net9.0
-      - name: Test
-        working-directory: Apps
-        run: dotnet test --no-restore --no-build --configuration Debug --framework net9.0 --verbosity normal
+env:
+  DOTNET_VERSION: 9.0.x
+  DOTNET_WORKLOADS: maui
+  FRAMEWORK_VERSION: net9.0
 
-  run_tests_release_config:
+jobs:
+  build-and-test:
+    name: Build and Test
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - name: Setup
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 9.0.x
+          dotnet-version: ${{ env.DOTNET_VERSION }}
       - name: .NET Workloads
-        run: dotnet workload install maui
+        run: dotnet workload install ${{ env.DOTNET_WORKLOADS }}
       - name: Restore
         working-directory: Apps
         run: dotnet restore
       - name: Build
         working-directory: Apps
-        run: dotnet build --no-restore --configuration Release --framework net9.0
+        run: dotnet build --no-restore --configuration ${{ matrix.configuration }} --framework ${{ env.FRAMEWORK_VERSION }}
       - name: Test
         working-directory: Apps
-        run: dotnet test --no-restore --no-build --configuration Release --framework net9.0 --verbosity normal
+        run: dotnet test --no-restore --no-build --configuration ${{ matrix.configuration }} --framework ${{ env.FRAMEWORK_VERSION }} --verbosity normal
