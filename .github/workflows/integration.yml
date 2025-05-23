@@ -16,10 +16,10 @@ jobs:
         with:
           dotnet-version: 9.0.x
       - name: .NET Workloads
-        run: dotnet workload install maui-windows maui-android
+        run: dotnet workload install maui-windows maui-android maui-maccatalyst
       - name: Restore
         working-directory: Apps
-        run: dotnet restore
+        run: dotnet restore --ignore-failed-sources
       - name: Build
         working-directory: Apps
         run: dotnet build --no-restore --configuration Debug --framework net9.0
@@ -36,10 +36,10 @@ jobs:
         with:
           dotnet-version: 9.0.x
       - name: .NET Workloads
-        run: dotnet workload install maui-windows maui-android
+        run: dotnet workload install maui-windows maui-android maui-maccatalyst
       - name: Restore
         working-directory: Apps
-        run: dotnet restore
+        run: dotnet restore --ignore-failed-sources
       - name: Build
         working-directory: Apps
         run: dotnet build --no-restore --configuration Release --framework net9.0
