@@ -7,37 +7,36 @@ on:
     branches: ["main"]
 
 env:
-  DOTNET_WORKLOADS: maui-windows maui-android
   FRAMEWORK_VERSION: net9.0
 
 jobs:
-  build-container:
-    name: Build container
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Build
-        run: |
-          docker build -t head-first-csharp-5-image:${{ github.sha }} .
-          docker images --filter=reference='head-first-csharp-5-image'
+  # Building container job is fine. Attempt to use the images leads into docker login trap.
+  # TODO - Figure out why does it need to login for the locally built docker images.
+  # build-container:
+  #   name: Build container
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Build
+  #       run: |
+  #         docker build -t head-first-csharp-5-image:${{ github.sha }} .
+  #         docker images --filter=reference='head-first-csharp-5-image'
 
   run-tests:
     name: Run Test
-    needs: build-container
     strategy:
       matrix:
         config: [Debug, Release]
     runs-on: ubuntu-latest
     container:
-      image: docker.io/library/head-first-csharp-5-image:${{ github.sha }}
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
+      image: mcr.microsoft.com/dotnet/sdk:9.0
     steps:
       - uses: actions/checkout@v4
-      - name: Check
+      - name: Setup
         run: |
           dotnet --version
+          dotnet workload search maui
+          dotnet workload install maui-windows maui-android
           dotnet workload list
       - name: Restore
         working-directory: Apps
