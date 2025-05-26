@@ -16,16 +16,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Build
+        run: |
+          docker build -t head-first-csharp-5-image .
 
-  build-and-test:
-    name: Build and Test
+  run-tests:
+    name: Run Test
     needs: build-container
     strategy:
       matrix:
         config: [Debug, Release]
     runs-on: ubuntu-latest
     container:
-      image: ./Dockerfile
+      image: head-first-csharp-5-image:latest
     steps:
       - uses: actions/checkout@v4
       - name: Check
