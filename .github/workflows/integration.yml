@@ -26,13 +26,14 @@ jobs:
       - name: .NET Workloads
         run: |
           dotnet workload install ${{ env.DOTNET_WORKLOADS }}
-          dotnet workload list
+          dotnet workload list 
+          dotnet workload search
       - name: Restore
         working-directory: Apps
         run: dotnet restore
-      # - name: Build
-      #   working-directory: Apps
-      #   run: dotnet build --no-restore --configuration ${{ matrix.config }} --framework ${{ env.FRAMEWORK_VERSION }}
-      # - name: Test
-      #   working-directory: Apps
-      #   run: dotnet test --no-restore --no-build --configuration ${{ matrix.config }} --framework ${{ env.FRAMEWORK_VERSION }} --verbosity normal
+      - name: Build
+        working-directory: Apps
+        run: dotnet build --no-restore --configuration ${{ matrix.config }} --framework ${{ env.FRAMEWORK_VERSION }}
+      - name: Test
+        working-directory: Apps
+        run: dotnet test --no-restore --no-build --configuration ${{ matrix.config }} --framework ${{ env.FRAMEWORK_VERSION }} --verbosity normal
