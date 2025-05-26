@@ -18,16 +18,13 @@ jobs:
         config: [Debug, Release]
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/dotnet/sdk:9.0
+      image: "Dockerfile"
     steps:
       - uses: actions/checkout@v4
-      - name: .NET Version
-        run: dotnet --version
-      - name: .NET Workloads
+      - name: Check
         run: |
-          dotnet workload install ${{ env.DOTNET_WORKLOADS }}
-          dotnet workload list 
-          dotnet workload search
+          dotnet --version
+          dotnet workload list
       - name: Restore
         working-directory: Apps
         run: dotnet restore
