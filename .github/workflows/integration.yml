@@ -7,8 +7,8 @@ on:
     branches: ["main"]
 
 env:
-  DOTNET_VERSION: 9.0.x
-  DOTNET_WORKLOADS: maui
+  DOTNET_VERSION: 9.0
+  DOTNET_WORKLOADS: maui-windows maui-android
   FRAMEWORK_VERSION: net9.0
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
         configuration: [Debug, Release]
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/dotnet/sdk:9.0
+      image: mcr.microsoft.com/dotnet/sdk:${{ env.DOTNET_VERSION }}
     steps:
       - uses: actions/checkout@v4
       - name: .NET Version
