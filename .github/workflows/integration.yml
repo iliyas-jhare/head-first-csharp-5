@@ -30,6 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: docker.io/library/head-first-csharp-5-image:${{ github.sha }}
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
     steps:
       - uses: actions/checkout@v4
       - name: Check
