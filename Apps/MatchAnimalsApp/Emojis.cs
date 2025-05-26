@@ -1,4 +1,6 @@
-﻿namespace MatchAnimals;
+﻿using Common;
+
+namespace MatchAnimals;
 
 public static class Emojis
 {
@@ -61,21 +63,5 @@ public static class Emojis
     ];
 
     public static Emoji[] GetAnimalEmojis(int count)
-    {
-        // make sure count is not greater than the emojis collection
-        count = count <= 0 || count > Animals.Length ? Animals.Length : count;
-
-        List<Emoji> emojis = Animals.ToList();
-
-        // return random emojis
-        Emoji[] instances = new Emoji[count];
-        for (int i = 0; i < count; i++)
-        {
-            int index = Random.Shared.Next(emojis.Count);
-            instances.SetValue(emojis[index], i);
-            emojis.RemoveAt(index);
-        }
-
-        return instances;
-    }
+        => Randomizer<Emoji>.GetRandomItems(Animals, count);
 }

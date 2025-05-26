@@ -30,7 +30,7 @@ public class CardPickerTests
     {
         // Arrange
         const int expected = 52;
-        const int count = 100;
+        const int count = 1000;
 
         // Act
         Card[] cards = CardPicker.GetCards(count);
@@ -54,7 +54,7 @@ public class CardPickerTests
     }
 
     [Fact]
-    public void ShouldReturnDistinctCardsOnly()
+    public void ShouldReturnDistinctCards()
     {
         // Arrange
         const int count = 5;

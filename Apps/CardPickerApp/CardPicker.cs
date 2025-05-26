@@ -1,4 +1,6 @@
-﻿namespace CardPickerApp;
+﻿using Common;
+
+namespace CardPickerApp;
 
 public class CardPicker
 {
@@ -63,21 +65,5 @@ public class CardPicker
     ];
 
     public static Card[] GetCards(int count)
-    {
-        // make sure count is not greater than the cards collection
-        count = count <= 0 || count > Cards.Length ? Cards.Length : count;
-
-        List<Card> cards = Cards.ToList();
-
-        // return random cards
-        Card[] instances = new Card[count];
-        for (int i = 0; i < count; i++)
-        {
-            int index = Random.Shared.Next(cards.Count);
-            instances.SetValue(cards[index], i);
-            cards.RemoveAt(index);
-        }
-
-        return instances;
-    }
+        => Randomizer<Card>.GetRandomItems(Cards, count);
 }
