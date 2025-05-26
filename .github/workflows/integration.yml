@@ -7,7 +7,6 @@ on:
     branches: ["main"]
 
 env:
-  DOTNET_VERSION: 9.0
   DOTNET_WORKLOADS: maui-windows maui-android
   FRAMEWORK_VERSION: net9.0
 
@@ -16,10 +15,10 @@ jobs:
     name: Build and Test
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        config: [Debug, Release]
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/dotnet/sdk:${{ env.DOTNET_VERSION }}
+      image: mcr.microsoft.com/dotnet/sdk:9.0
     steps:
       - uses: actions/checkout@v4
       - name: .NET Version
@@ -33,7 +32,7 @@ jobs:
         run: dotnet restore
       # - name: Build
       #   working-directory: Apps
-      #   run: dotnet build --no-restore --configuration ${{ matrix.configuration }} --framework ${{ env.FRAMEWORK_VERSION }}
+      #   run: dotnet build --no-restore --configuration ${{ matrix.config }} --framework ${{ env.FRAMEWORK_VERSION }}
       # - name: Test
       #   working-directory: Apps
-      #   run: dotnet test --no-restore --no-build --configuration ${{ matrix.configuration }} --framework ${{ env.FRAMEWORK_VERSION }} --verbosity normal
+      #   run: dotnet test --no-restore --no-build --configuration ${{ matrix.config }} --framework ${{ env.FRAMEWORK_VERSION }} --verbosity normal
