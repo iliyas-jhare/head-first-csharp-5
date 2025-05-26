@@ -22,17 +22,15 @@ jobs:
       image: mcr.microsoft.com/dotnet/sdk:9.0
     steps:
       - uses: actions/checkout@v4
-      - name: Test
+      - name: .NET Version
         run: dotnet --version
-      # - name: Setup
-      #   uses: actions/setup-dotnet@v4
-      #   with:
-      #     dotnet-version: ${{ env.DOTNET_VERSION }}
-      # - name: .NET Workloads
-      #   run: dotnet workload install ${{ env.DOTNET_WORKLOADS }}
-      # - name: Restore
-      #   working-directory: Apps
-      #   run: dotnet restore
+      - name: .NET Workloads
+        run: |
+          dotnet workload install ${{ env.DOTNET_WORKLOADS }}
+          dotnet workload list
+      - name: Restore
+        working-directory: Apps
+        run: dotnet restore
       # - name: Build
       #   working-directory: Apps
       #   run: dotnet build --no-restore --configuration ${{ matrix.configuration }} --framework ${{ env.FRAMEWORK_VERSION }}
