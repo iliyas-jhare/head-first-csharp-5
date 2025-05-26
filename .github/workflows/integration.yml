@@ -11,14 +11,21 @@ env:
   FRAMEWORK_VERSION: net9.0
 
 jobs:
+  build-container:
+    name: Build container
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
   build-and-test:
     name: Build and Test
+    needs: build-container
     strategy:
       matrix:
         config: [Debug, Release]
     runs-on: ubuntu-latest
     container:
-      image: "Dockerfile"
+      image: ./Dockerfile
     steps:
       - uses: actions/checkout@v4
       - name: Check
