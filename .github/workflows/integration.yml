@@ -17,6 +17,7 @@ jobs:
     strategy:
       matrix:
         configuration: [Debug, Release]
+    runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/dotnet/sdk:9.0
     steps:
