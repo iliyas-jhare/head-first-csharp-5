@@ -30,7 +30,7 @@ jobs:
         config: [Debug, Release]
     runs-on: ubuntu-latest
     container:
-      image: docker.io/library/${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+      image: docker.io/library/'${{ env.DOCKER_IMAGE }}':'${{ github.sha }}'
     steps:
       - uses: actions/checkout@v4
       - name: Check
